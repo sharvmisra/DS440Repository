@@ -5,24 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBA Players Details</title>
     <style>
-        .content-box {
-            width: 300px;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
             padding: 20px;
+        }
+        .content-box {
+            background-color: #fff;
+            width: 90%;
+            max-width: 400px;
             margin: 20px auto;
-            border: 1px solid #000;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .nba-logo {
+            width: 100px;
+            margin: 0 auto 20px;
+        }
+        input[type="text"] {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
         }
         img {
             max-width: 100%;
             height: auto;
+            border-radius: 4px;
+            margin-top: 10px;
         }
-        h2, p {
-            text-align: center;
+        p {
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
     <div class="content-box">
-        <h2>NBA Player Details</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/03/National_Basketball_Association_logo.svg" alt="NBA Logo" class="nba-logo">
+        <h2>NBA Player Details</h2> 
         <input type="text" id="playerName" placeholder="Enter Player Name">
         <button onclick="displayPlayerDetails()">Show Player Details</button>
         <div id="playerDetails">
@@ -34,23 +70,23 @@
         // Example player data
         const playersData = {
             'LeBron James': {
-                image: 'https://via.placeholder.com/150', // Placeholder, replace with actual image URL
+                image: 'https://via.placeholder.com/150', // Placeholder
                 predictedSalary: '$39M',
                 actualSalary: '$41M'
             },
-            // Add more players and their details here
+            // Add more players/details
         };
 
         function displayPlayerDetails() {
-            const playerName = document.getElementById('playerName').value;
-            if(playerName.trim() === '') {
+            const playerName = document.getElementById('playerName').value.trim();
+            if(playerName === '') {
                 alert('Please enter a player name');
                 return;
             }
 
             const player = playersData[playerName];
             const playerDetailsDiv = document.getElementById('playerDetails');
-            playerDetailsDiv.innerHTML = ''; // Clear previous content
+            playerDetailsDiv.innerHTML = ''; 
 
             if(player) {
                 // Display player image
@@ -62,7 +98,6 @@
                 const salaryInfo = document.createElement('p');
                 salaryInfo.innerHTML = `Predicted Salary: ${player.predictedSalary} <br> Actual Salary: ${player.actualSalary}`;
 
-                // Append to the div
                 playerDetailsDiv.appendChild(img);
                 playerDetailsDiv.appendChild(salaryInfo);
             } else {
